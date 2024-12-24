@@ -1,2 +1,2 @@
 # agenda_flask
-prueba de agenda
+prueba de agenda realizada en python, flask, postgres
