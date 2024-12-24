@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+            <div class="card-header">
+                EDITAR CONSULTORIO
+            </div>
+            <div class="card-body">
+                <form action="/consultorio/edit/actualizar" method="post">
+                    <input type="hidden" name="txtId" value="{{ listaConsultorio[0] }}">
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">NOMBRE</label>
+                        <input type="text" class="form-control" name="nombre" value="{{ listaConsultorio[1] }}" placeholder="Nombre del Consultorio">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="hospital" class="form-label">SELECCIONAR HOSPITAL</label>
+                        <select class="form-control" id="hospital" name="hospital">
+                            <option value="">Seleccionar Hospital</option>
+                            {% for hospital in listaHospital_id_nom %}
+                                <option value="{{ hospital[0] }}"
+                                        {% if hospital[0] == listaConsultorio[2] %} selected {% endif %}>
+                                    {{ hospital[1] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+{% include 'footer.html' %}

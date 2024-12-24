@@ -1,0 +1,43 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+    <div class="card-header">
+        NUEVO HOSPITAL
+    </div>
+    <div class="card-body">
+        <form action="/hospital/create/guardar" method="post">
+
+             <div class="mb-3">
+            <label for="" class="form-label">NOMBRE</label>
+            <input type="text" class="form-control" name="nombre" id="" aria-describedby="helpId" placeholder="NOMBRE">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">DIRECCION</label>
+            <input type="text" class="form-control" name="direccion" id="" aria-describedby="helpId" placeholder="DIRECCION">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">TELEFONO</label>
+            <input type="text" class="form-control" name="telefono" id="" aria-describedby="helpId" placeholder="TELEFONO">
+
+        </div>
+            <button TYPE="submit" class="btn btn-primary" >GUARDAR</button>
+        </form>
+
+    </div>
+</div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+
+
+{% include 'footer.html' %}

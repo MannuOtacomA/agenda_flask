@@ -1,0 +1,34 @@
+
+{% include 'header.html' %}
+<h3>LISTA DE MEDICOS</h3>
+<div>
+    <a href="/medico/create" class="btn btn-primary">Nuevo</a>
+</div>
+<br>
+<table class="table">
+    <thead class="table table-dark">
+    <tr>
+        <th>ID</th>
+        <th>MEDICO</th>
+        <th>ESPECIALIDAD</th>
+        <th>TELEFONO</th>
+        <th>ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for lh in lista %}
+    <tr>
+        <td scope="row">{{ lh[0] }}</td>
+        <td>{{ lh[1] }}</td>
+        <td>{{ lh[2] }}</td>
+        <td>{{ lh[3] }}</td>
+        <td>
+             <a href="/medico/edit/{{ lh[0] }}" class="btn btn-success">Editar</a>
+             <a href="/medico/delete/{{ lh[0] }}" class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% include 'footer.html' %}

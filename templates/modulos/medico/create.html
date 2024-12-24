@@ -1,0 +1,52 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+    <div class="card-header">
+        NUEVO MEDICO
+    </div>
+    <div class="card-body">
+        <form action="/medico/create/guardar" method="post">
+
+             <div class="mb-3">
+            <label for="" class="form-label">NOMBRE</label>
+            <input type="text" class="form-control" name="nombre" id="" aria-describedby="helpId" placeholder="NOMBRE">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">ESPECIALIDAD</label>
+            <input type="text" class="form-control" name="especialidad" id="" aria-describedby="helpId" placeholder="ESPECIALIDAD">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">TELEFONO</label>
+            <input type="text" class="form-control" name="telefono" id="" aria-describedby="helpId" placeholder="TELEFONO">
+
+        </div>
+
+        <div class="mb-3">
+              <label for="hospital" class="form-label">SELECCIONAR HOSPITAL</label>
+              <select class="form-control" id="hospital" name="hospital">
+                <option value="">Seleccionar Hospital</option> <!-- Opción predeterminada -->
+                {% for hospital in listaIdNom %}
+                  <option value="{{ hospital[0] }}">{{ hospital[1] }}</option> <!-- hospital[0] es el ID y hospital[1] es el nombre -->
+                {% endfor %}
+              </select>
+        </div>
+
+            <button TYPE="submit" class="btn btn-primary" >GUARDAR</button>
+        </form>
+
+    </div>
+</div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+{% include 'footer.html' %}

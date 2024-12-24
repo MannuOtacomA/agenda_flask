@@ -1,0 +1,31 @@
+{% include 'header.html' %}
+<h3>LISTA DE CONSULTORIOS</h3>
+<div>
+    <a href="/consultorio/create" class="btn btn-primary">Nuevo</a>
+</div>
+<br>
+<table class="table">
+    <thead class="table table-dark">
+        <tr>
+            <th>ID</th>
+            <th>CONSULTORIO</th>
+            <th>HOSPITAL</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consultorio in lista %}
+        <tr>
+            <td scope="row">{{ consultorio[0] }}</td>
+            <td>{{ consultorio[1] }}</td>
+            <td>{{ consultorio[2] }}</td>
+            <td>
+                <a href="/consultorio/edit/{{ consultorio[0] }}" class="btn btn-success">Editar</a>
+                <a href="/consultorio/delete/{{ consultorio[0] }}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'footer.html' %}

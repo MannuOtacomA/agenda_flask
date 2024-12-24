@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+            <div class="card-header">
+                EDITAR HORARIO
+            </div>
+            <div class="card-body">
+                <form action="/horario/edit/actualizar" method="post">
+                    <input type="hidden" name="txtId" value="{{ listaHorario[0] }}">
+
+                   <!-- Médico -->
+<div class="mb-3">
+    <label for="medico" class="form-label">SELECCIONAR MÉDICO</label>
+    <select class="form-control" id="medico" name="medico">
+        <option value="">Seleccionar Médico</option>
+        {% for medico in listaMedicos %}
+            <option value="{{ medico[0] }}" {% if medico[0]|string == listaHorario[1]|string %} selected {% endif %}>{{ medico[1] }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Consultorio -->
+<div class="mb-3">
+    <label for="consultorio" class="form-label">SELECCIONAR CONSULTORIO</label>
+    <select class="form-control" id="consultorio" name="consultorio">
+        <option value="">Seleccionar Consultorio</option>
+        {% for consultorio in listaConsultorios %}
+            <option value="{{ consultorio[0] }}" {% if consultorio[0]|string == listaHorario[2]|string %} selected {% endif %}>{{ consultorio[1] }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Codificación -->
+<div class="mb-3">
+    <label for="codificacion" class="form-label">SELECCIONAR CODIFICACIÓN</label>
+    <select class="form-control" id="codificacion" name="codificacion">
+        <option value="">Seleccionar Codificación</option>
+        {% for codificacion in listaCodificaciones %}
+            <option value="{{ codificacion[0] }}" {% if codificacion[0]|string == listaHorario[3]|string %} selected {% endif %}>{{ codificacion[1] }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Fecha -->
+<div class="mb-3">
+    <label for="fecha" class="form-label">FECHA</label>
+    <input type="date" class="form-control" name="fecha" value="{{ listaHorario[4] }}" required>
+</div>
+
+
+                    <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+{% include 'footer.html' %}

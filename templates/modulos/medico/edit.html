@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+    <div class="card-header">
+        EDITAR MEDICO
+    </div>
+    <div class="card-body">
+        <form action="/medico/edit/actualizar" method="post">
+            <input type="hidden" name="txtId" value="{{listaHospital[0]}}">
+             <div class="mb-3">
+            <label for="" class="form-label">NOMBRE</label>
+            <input type="text" class="form-control" name="nombre" id="" value="{{listaHospital[1]}}" aria-describedby="helpId" placeholder="NOMBRE">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">ESPECIALIDAD</label>
+            <input type="text" class="form-control" name="especialidad" id="" value="{{listaHospital[2]}}" aria-describedby="helpId" placeholder="DIRECCION">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">TELEFONO</label>
+            <input type="text" class="form-control" name="telefono" id="" value="{{listaHospital[3]}}" aria-describedby="helpId" placeholder="TELEFONO">
+
+        </div>
+
+        <div class="mb-3">
+              <label for="hospital" class="form-label">SELECCIONAR HOSPITAL</label>
+              <select class="form-control" id="hospital" name="hospital">
+                <option value="">Seleccionar Hospital</option> <!-- Opción predeterminada -->
+                {% for hospital in listaHospital_id_nom %}
+                  <!-- hospital[0] es el ID y hospital[1] es el nombre -->
+                  <option value="{{ hospital[0] }}"
+                          {% if hospital[0] == listaHospital[4] %}
+                            selected
+                          {% endif %}>
+                          {{ hospital[1] }}
+                  </option>
+                {% endfor %}
+              </select>
+        </div>
+
+            <button TYPE="submit" class="btn btn-primary" >GUARDAR</button>
+        </form>
+
+    </div>
+</div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+
+
+{% include 'footer.html' %}

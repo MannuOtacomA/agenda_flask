@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+
+<div class="row">
+    <div class="col 4"></div>
+    <div class="col 4">
+
+        <div class="card">
+            <div class="card-header">
+                NUEVO HORARIO
+            </div>
+            <div class="card-body">
+                <form action="/horario/create/guardar" method="post">
+
+                    <div class="mb-3">
+                        <label for="medico" class="form-label">SELECCIONAR MEDICO</label>
+                        <select class="form-control" id="medico" name="medico">
+                            <option value="">Seleccionar Médico</option>
+                            {% for medico in listaMedicos %}
+                                <option value="{{ medico[0] }}">{{ medico[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="consultorio" class="form-label">SELECCIONAR CONSULTORIO</label>
+                        <select class="form-control" id="consultorio" name="consultorio">
+                            <option value="">Seleccionar Consultorio</option>
+                            {% for consultorio in listaConsultorios %}
+                                <option value="{{ consultorio[0] }}">{{ consultorio[1] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="codificacion" class="form-label">SELECCIONAR CODIFICACIÓN</label>
+                        <select class="form-control" id="codificacion" name="codificacion">
+                            <option value="">Seleccionar Codificación</option>
+                            {% for codificacion in listaCodificaciones %}
+                                <option value="{{ codificacion[0] }}">{{ codificacion[1] }} - {{ codificacion[2] }} - {{ codificacion[3] }} / {{ codificacion[4] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">FECHA</label>
+                        <input type="date" class="form-control" name="fecha" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col 4"></div>
+</div>
+
+{% include 'footer.html' %}

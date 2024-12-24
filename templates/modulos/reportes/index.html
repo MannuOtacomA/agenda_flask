@@ -1,0 +1,56 @@
+{% include 'header.html' %}
+
+<div class="container mt-4">
+    <h3>Reporte de Uso de Consultorios</h3>
+
+    <!-- Formulario para seleccionar rango de fechas -->
+<form action="/reportes" method="post" class="mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="fecha_inicio" class="form-label">Fecha Inicio:</label>
+            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+        </div>
+        <div class="col-md-4">
+            <label for="fecha_fin" class="form-label">Fecha Fin:</label>
+            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+        </div>
+        <div class="col-md-4">
+            <label for="consultorio" class="form-label">Consultorio:</label>
+            <select class="form-control" id="consultorio" name="consultorio">
+                <option value="">Todos</option>
+                {% for consultorio in listaConsultorios %}
+                    <option value="{{ consultorio[0] }}">{{ consultorio[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>
+    </div>
+</form>
+
+    <!-- Mostrar resultados -->
+    {% if resultados %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Consultorio</th>
+                <th>Usos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td>{{ resultado[0] }}</td>
+                <td>{{ resultado[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay datos disponibles para el rango seleccionado.</p>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}
