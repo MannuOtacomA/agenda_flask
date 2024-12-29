@@ -1,5 +1,5 @@
 from model.conexion_db import ConexionDB
-from tkinter import messagebox
+#from tkinter import messagebox
 
 def crear_tabla():
     conexion = ConexionDB()
