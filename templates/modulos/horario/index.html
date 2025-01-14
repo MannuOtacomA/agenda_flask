@@ -35,3 +35,76 @@
 </table>
 
 {% include 'footer.html' %}
+=======
+{% include 'header.html' %}
+<h3>LISTA DE HORARIOS</h3>
+<div>
+    <a href="/horario/create" class="btn btn-primary">Nuevo</a>
+</div>
+<br>
+
+<!-- Calendario -->
+<div id="calendar"></div>
+
+<!-- Modal para Detalles del Médico -->
+<div class="modal fade" id="medicoModal" tabindex="-1" aria-labelledby="medicoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="medicoModalLabel">Detalle del Médico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Médico:</strong> <span id="modal-medico"></span></p>
+                <p><strong>Consultorio:</strong> <span id="modal-consultorio"></span></p>
+                <p><strong>Codificación:</strong> <span id="modal-codificacion"></span></p>
+                <p><strong>Descripción:</strong> <span id="modal-descripcion"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- capturar el clic en un evento y mostrar los detalles: -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'es',
+            buttonText: {
+                today: 'Hoy'  // Texto personalizado para el botón "Today"
+            },
+            events: [
+                {% for horario in horarios %}
+                {
+                    title: '{{ horario[1] }}', // Nombre del médico
+                    start: '{{ horario[0] }}',  // Fecha
+                    extendedProps: {
+                        consultorio: '{{ horario[2] }}',
+                        codificacion: '{{ horario[3] }}',
+                        descripcion: '{{ horario[4] }}'
+                    }
+                },
+                {% endfor %}
+            ],
+            eventClick: function(info) {
+                // Mostrar detalles en el modal
+                document.getElementById('modal-medico').innerText = info.event.title;
+                document.getElementById('modal-consultorio').innerText = info.event.extendedProps.consultorio;
+                document.getElementById('modal-codificacion').innerText = info.event.extendedProps.codificacion;
+                document.getElementById('modal-descripcion').innerText = info.event.extendedProps.descripcion;
+
+                // Mostrar el modal
+                var modal = new bootstrap.Modal(document.getElementById('medicoModal'));
+                modal.show();
+            }
+        });
+        calendar.render();
+    });
+</script>
+
+
+{% include 'footer.html' %}

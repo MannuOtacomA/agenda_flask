@@ -157,8 +157,11 @@ def consultorio_delete(id):
 #listar
 @app.route("/horario")
 def index_horario():
-    datos = listar()  # Listar todos los horarios con datos asociados
-    return render_template("modulos/horario/index.html", lista=datos)
+    #datos = listar()  # Listar todos los horarios con datos asociados
+    #return render_template("modulos/horario/index.html", lista=datos)
+    horarios = listar_horarios_por_fecha()  # Obtener datos de horarios
+    return render_template("modulos/horario/index.html", horarios=horarios)
+
 
 #create
 @app.route("/horario/create")

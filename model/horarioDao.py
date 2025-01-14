@@ -150,3 +150,28 @@ def eliminar_horario(id):
         conexion.cerrar()
         return {"status": "danger", "message": f"No se pudo eliminar el horario: {e}"}
 
+
+#para mostrar en calendario
+def listar_horarios_por_fecha():
+    conexion = ConexionDB()
+    sql = '''
+    SELECT 
+        h.fecha,
+        m.nombre AS medico,
+        c.nombre AS consultorio,
+        ch.sigla AS codificacion_sigla,
+        ch.descripcion AS codificacion_descripcion
+    FROM horario h
+    JOIN medico m ON h.id_medico = m.id_medico
+    JOIN consultorio c ON h.id_consultorio = c.id_consultorio
+    JOIN codificacionhorarios ch ON h.id_codificacion = ch.id_codificacion
+    ORDER BY h.fecha;
+    '''
+    try:
+        conexion.cursor.execute(sql)
+        registros = conexion.cursor.fetchall()
+        conexion.cerrar()
+        return registros
+    except Exception as e:
+        conexion.cerrar()
+        return [], {"status": "danger", "message": f"No se pudo listar los horarios: {e}"}
